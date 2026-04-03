@@ -3,6 +3,7 @@ VENV = venv
 PYTHON = $(VENV)/bin/python3
 PIP = $(VENV)/bin/pip
 
+.DEFAULT_GOAL := help
 .PHONY: setup download train run run-mp collect-attentive collect-distracted help
 
 help:
@@ -11,8 +12,7 @@ help:
 	@echo "make setup               - Create venv and install dependencies"
 	@echo "make download            - Download and organize Kaggle dataset"
 	@echo "make train               - Train the Sequential CNN model"
-	@echo "make run                 - Start basic webcam inference (MediaPipe FaceDetection)"
-	@echo "make run-mp              - Start advanced webcam inference (MediaPipe FaceMesh + Drowsiness)"
+	@echo "make run                 - Start real-time monitor (MediaPipe FaceMesh + Drowsiness)"
 	@echo "make collect-attentive   - Manually collect 'attentive' face data"
 	@echo "make collect-distracted  - Manually collect 'distracted' face data"
 
@@ -30,6 +30,6 @@ train:
 run:
 	$(PYTHON) ca_mp.py
 
-run-mp:
-	$(PYTHON) ca_mp.py
+run-mp: run
+
 

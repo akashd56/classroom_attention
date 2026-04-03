@@ -30,7 +30,7 @@ backgroundColor: #f0f4f8
 
 ## 🛠️ Data & Inference Pipeline
 
-![alt text](Camera Feed Landmark-2026-04-03-044914.svg)
+![alt text](<Camera Feed Landmark-2026-04-03-044914.svg>)
 
 ---
 

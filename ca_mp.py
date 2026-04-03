@@ -216,15 +216,11 @@ def main():
 
         # UI Overlay
         overlay = frame.copy()
-        cv2.rectangle(overlay, (0, 0), (300, 120), (0, 0, 0), -1)
+        cv2.rectangle(overlay, (0, 0), (250, 50), (0, 0, 0), -1)
         frame = cv2.addWeighted(overlay, 0.6, frame, 0.4, 0)
         
         total = sum(counts.values())
-        rate = (counts['Attentive'] / total * 100) if total > 0 else 0
-        
         cv2.putText(frame, f"Total Students: {total}", (10, 30), Config.FONT, 0.7, (255, 255, 255), 2)
-        cv2.putText(frame, f"Attentive: {counts['Attentive']}", (10, 60), Config.FONT, 0.7, (0, 255, 0), 2)
-        cv2.putText(frame, f"Attention Rate: {rate:.0f}%", (10, 90), Config.FONT, 0.7, (255, 255, 0), 2)
 
         cv2.imshow('Classroom Attention Monitor (MediaPipe)', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'): break
