@@ -10,8 +10,6 @@ import math
 class Config:
     MODEL_PATH = 'models/attention_cnn.h5'
     IMG_SIZE = (128, 128)
-    CLASSES = ['Attentive', 'Distracted']
-    COLORS = [(0, 255, 0), (0, 0, 255)]  # Green for Attentive, Red for Distracted
     
     # Face Mesh Config
     MAX_FACES = 10 # Reduced for performance on normal laptop
@@ -19,8 +17,8 @@ class Config:
     MIN_TRACKING_CONFIDENCE = 0.5
     
     # Drowsiness Config
-    EAR_THRESHOLD = 0.2
-    MAR_THRESHOLD = 0.5
+    EAR_THRESHOLD = 0.15
+    MAR_THRESHOLD = 0.8
     
     # Visuals
     FONT = cv2.FONT_HERSHEY_SIMPLEX
@@ -185,11 +183,11 @@ def main():
                     cnn_hint = f" (CNN: {pred:.2f})"
                     
                     # Distraction Detection (LANDMARK BASED - RELIABLE)
-                    if mar > 0.8: # Yawning Check (High Priority)
+                    if mar > Config.MAR_THRESHOLD: # Yawning Check (High Priority)
                         status = "YAWNING"
                         color = (255, 255, 0) # Cyan/Yellow-ish
                         counts['Distracted'] += 1
-                    elif ear < 0.15: 
+                    elif ear < Config.EAR_THRESHOLD: 
                         status = "DROWSY"
                         color = (0, 165, 255) # Orange
                         counts['Drowsy'] += 1

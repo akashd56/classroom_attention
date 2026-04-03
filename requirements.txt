@@ -2,5 +2,5 @@ tensorflow>=2.15.0
 mediapipe==0.10.9
 opencv-python>=4.8.0.0
 numpy<2.0.0
-pandas>=1.5.3
 protobuf==3.20.3
+notebook
